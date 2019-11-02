@@ -1,0 +1,10 @@
+p.text-danger{
+    background: center;
+    width: 100%;
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-style: italic;
+    -webkit-font-variant-ligatures: normal;
+    font-variant-ligatures: normal;
+    font-weight: 100;
+    font-size: 17px;
+}

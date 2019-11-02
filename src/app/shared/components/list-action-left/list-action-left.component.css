@@ -1,0 +1,10 @@
+.list-group {
+    width: 250px;
+    height: 1000px;
+}
+
+ul.list-group-flush{
+    margin-bottom: initial;
+    padding-left: initial;
+    border-left: 10px solid #FBDDAC;
+}

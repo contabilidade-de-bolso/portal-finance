@@ -1,0 +1,28 @@
+<div class="cards-detail">
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let card of cards">
+      <div class="card mt-2">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-border-icon">
+                <span class="card-icon">
+                  <i
+                    class="{{ card.icon }}"
+                    [ngClass]="{
+                      'text-success': card.cd_transaction_type == 'SAI',
+                      'text-danger': card.cd_transaction_type == 'ENT',
+                      'text-warning': card.cd_transaction_type == 'AMB'
+                    }"
+                  ></i>
+                </span>
+              </div>
+              <h5 class="card-title">{{ card.title }}</h5>
+              <p class="card-text">R$ {{ card.value | number: "1.2-2" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

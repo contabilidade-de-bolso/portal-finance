@@ -1,0 +1,156 @@
+<div class="auth">
+  <div class="content col-md-12 bg-light">
+    <app-page-header
+      [page-title]="'Cadastro de usuário'"
+      icon-show="true"
+      icon-class="fas fa-chevron-left"
+      button-text=""
+      button-link="/"
+      button-class="btn btn-light w-100"
+      title-class="text-center text-uppercase title-login"
+      placement-tooltip="left"
+      message-tooltip="Voltar"
+    ></app-page-header>
+
+    <form [formGroup]="resourceForm">
+      <!-- LINHA 1 -->
+      <div class="form-row">
+        <!-- NOME -->
+        <div class="form-group col-md-12">
+          <label class="text-light" for="name">Nome</label>
+          <div class="input-group mb-3">
+            <input
+              [ngClass]="
+                resourceForm.get('name').invalid &&
+                resourceForm.get('name').touched
+                  ? 'border-danger'
+                  : ''
+              "
+              autocomplete="off"
+              type="text"
+              class="form-control"
+              autocomplete="false"
+              id="name"
+              formControlName="name"
+              placeholder="Nome Completo"
+            />
+          </div>
+          <small class="form-text text-muted"
+            >Ex: Douglas Gabriel Mota dos Santos ....</small
+          >
+        </div>
+        <!-- USERNAME -->
+        <div class="form-group col-md-6">
+          <label class="text-light" for="username">Usuário</label>
+          <div class="input-group mb-3">
+            <input
+              [ngClass]="
+                resourceForm.get('username').invalid &&
+                resourceForm.get('username').touched
+                  ? 'border-danger'
+                  : ''
+              "
+              autocomplete="off"
+              type="text"
+              class="form-control"
+              autocomplete="false"
+              id="username"
+              formControlName="username"
+              placeholder="Usuário"
+            />
+          </div>
+          <small class="form-text text-muted"
+            >Ex: douglassantos, douglas.santos ...</small
+          >
+        </div>
+        <!-- EMAIL -->
+        <div class="form-group col-md-6">
+          <label class="text-light" for="email">Email</label>
+          <div class="input-group mb-3">
+            <input
+              [ngClass]="
+                resourceForm.get('email').invalid &&
+                resourceForm.get('email').touched
+                  ? 'border-danger'
+                  : ''
+              "
+              autocomplete="off"
+              type="text"
+              class="form-control"
+              autocomplete="false"
+              id="email"
+              formControlName="email"
+              placeholder="Email"
+            />
+          </div>
+          <small class="form-text text-muted"
+            >Ex: douglasgabrielmota@gmail.com ....</small
+          >
+        </div>
+      </div>
+
+      <!-- LINHA 2 -->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="text-light" for="password">Senha</label>
+          <div class="input-group mb-3">
+            <input
+              [ngClass]="
+                resourceForm.get('password').invalid &&
+                resourceForm.get('password').touched
+                  ? 'border-danger'
+                  : ''
+              "
+              autocomplete="off"
+              type="password"
+              class="form-control"
+              autocomplete="false"
+              id="password"
+              formControlName="password"
+              placeholder=" * * * * * * * * * * *"
+            />
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="text-light" for="ok_password"
+            >Confirmação de Senha</label
+          >
+          <div class="input-group mb-3">
+            <input
+              [ngClass]="
+                resourceForm.get('ok_password').invalid &&
+                resourceForm.get('ok_password').touched
+                  ? 'border-danger'
+                  : ''
+              "
+              autocomplete="off"
+              type="password"
+              class="form-control"
+              autocomplete="false"
+              id="ok_password"
+              formControlName="ok_password"
+              placeholder=" * * * * * * * * * * *"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- LINHA 2 -->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <button
+            type="button"
+            class="float-right btn btn-primary"
+            [disabled]="submittingForm || resourceForm.invalid"
+            (click)="submitForm()"
+          >
+            CADASTRAR
+          </button>
+        </div>
+        <div class="form-group col-md-6">
+          <button type="reset" class="float-right btn btn-light">LIMPAR</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

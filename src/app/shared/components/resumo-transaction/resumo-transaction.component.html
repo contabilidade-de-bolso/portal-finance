@@ -1,0 +1,17 @@
+<div class="resumo-transaction">
+  <div class="resumo-chart col-md-4 mt-4">
+    <div
+      #chartTarget
+      class="chart"
+      [ngStyle]="{ 'width.%': 100, 'height.px': 360, display: 'block' }"
+    ></div>
+  </div>
+  <div class="resumo-grid col-md-8 mt-4">
+    <finance-grid
+      #resumoTransactionGrid
+      [gridOptions]="gridOptions"
+      [height]="'360px'"
+    >
+    </finance-grid>
+  </div>
+</div>

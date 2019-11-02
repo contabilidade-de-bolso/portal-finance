@@ -1,0 +1,21 @@
+<div class="row mt-2 mb-3">
+  <div *ngIf="showButton" class="col-md-2 text-right">
+    <button
+      [routerLink]="buttonLink"
+      class="btn"
+      [ngClass]="buttonClass"
+      [placement]="placementTooltip"
+      [ngbTooltip]="messageTooltip"
+    >
+      <span *ngIf="iconShow">{{ buttonText }}</span>
+      <span>
+        <i [ngClass]="iconClass"></i>
+      </span>
+    </button>
+  </div>
+  <div class="col-md-9 mt-1">
+    <h1 class="h2 border-left pl-2" [ngClass]="titleClass">
+      {{ pageTitle }}
+    </h1>
+  </div>
+</div>

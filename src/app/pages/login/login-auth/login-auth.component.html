@@ -1,0 +1,69 @@
+<div class="auth">
+  <div class="content col-md-12 bg-light">
+    <div class="logo"><img src="../../../../assets/logo.png" alt="" /></div>
+    <form
+      [formGroup]="resourceForm"
+      (submit)="submitForm()"
+      class="container-base"
+    >
+      <small class="form-text text-danger text-center">{{
+        logoutMessage
+      }}</small>
+      <div class="form-group">
+        <label class="text-light">Usuário</label>
+        <div class="input-group">
+          <input
+            [ngClass]="
+              resourceForm.get('username').invalid &&
+              resourceForm.get('username').touched
+                ? 'border-danger'
+                : ''
+            "
+            autocomplete="off"
+            formControlName="username"
+            type="text"
+            class="form-control"
+            placeholder="Nome do usuário"
+          />
+        </div>
+        <small class="form-text text-muted"
+          >Utilize seu e-mail ou username cadastrado para se logar.</small
+        >
+      </div>
+      <div class="form-group">
+        <label class="text-light">Senha</label>
+        <div class="input-group">
+          <input
+            [ngClass]="
+              resourceForm.get('password').invalid &&
+              resourceForm.get('password').touched
+                ? 'border-danger'
+                : ''
+            "
+            autocomplete="off"
+            formControlName="password"
+            type="password"
+            class="form-control"
+            placeholder="* * * * * * * * * * * "
+          />
+        </div>
+      </div>
+      <div class="btn-group-action">
+        <button
+          [disabled]="submittingForm || resourceForm.invalid"
+          type="submit"
+          class="btn btn-primary col-md-12"
+        >
+          ENTRAR
+        </button>
+        <button
+          type="button"
+          class="btn btn btn-primary col-md-12 mt-1"
+          routerLink="new"
+        >
+          NOVO
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

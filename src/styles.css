@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  /* background-image: url("/assets/bg/bg-authenticate.png"); */
+  background-color: #53b982;
+  background-size: cover;
+  font-family: Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.highcharts-credits {
+  display: none;
+}
+
+div.container-content {
+  padding: 0px 15px;
+  height: -webkit-fill-available;
+  background: #dbdbdb;
+}
+
+input.form-control,
+select.form-control {
+  outline: 0;
+  box-shadow: none !important;
+  color: #070a0e;
+  border-color: #53b982;
+  background: center;
+  width: 75%;
+  height: 60px;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-style: italic;
+  font-variant-ligatures: normal;
+  font-weight: 100;
+  font-size: 20px;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 1px solid #53b982;
+  border-bottom: 1px solid #53b982;
+  text-transform: none;
+}
+
+button:not(.btn-link) {
+  width: 100%;
+  height: 55px;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-style: italic;
+  font-variant-ligatures: normal;
+  font-weight: 100;
+  font-size: 30px;
+}
+
+.modal-header button {
+  width: auto;
+}
+
+.modal-right {
+  right: 0;
+}
+
+.modal-left {
+  right: 0;
+}
+
+.modal .modal-full-height {
+  position: absolute;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  width: 400px;
+  height: auto;
+  min-height: 100%;
+  top: 0;
+}

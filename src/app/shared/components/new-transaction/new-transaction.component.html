@@ -1,0 +1,200 @@
+<div class="modal-content" *ngIf="!showCategories; else categoriesTemplate">
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+    <h4 class="modal-title w-100" id="myModalLabel">Adicionar transação</h4>
+  </div>
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+    <div class="modal-body">
+      <div class="tp-transaction">
+        <div class="row">
+          <div class="col">
+            <div class="text-center">
+              <div class="form-check form-check-inline">
+                <label class="form-check-label">Isso é uma: </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  name="cd_transaction_type"
+                  value="ENT"
+                  class="form-radio"
+                  formControlName="cd_transaction_type"
+                  checked
+                /><label
+                  id="radio_cd_transaction_type"
+                  for="radio_cd_transaction_type"
+                  >Receita</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  name="cd_transaction_type"
+                  value="SAI"
+                  formControlName="cd_transaction_type"
+                  class="form-radio"
+                  checked
+                /><label
+                  id="radio_cd_transaction_type"
+                  for="radio_cd_transaction_type"
+                  >Despesa</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container content-new-transaction mt-5">
+        <div class="row label-float">
+          <input
+            formControlName="dt_transaction"
+            class="form-control w-100"
+            placeholder=""
+            name="dp"
+            (click)="d.toggle()"
+            ngbDatepicker
+            #d="ngbDatepicker"
+          />
+          <label class="form-check-label">Data</label>
+        </div>
+
+        <div class="row label-float">
+          <input
+            formControlName="nm_transaction"
+            type="text"
+            class="form-control w-100"
+            placeholder=" "
+            autofocus
+          />
+          <label class="form-check-label">Nome da transação</label>
+        </div>
+
+        <div class="row label-float">
+          <input
+            formControlName="vl_transaction"
+            currencyMask
+            type="text"
+            name="vl_transactions"
+            class="form-control w-100"
+            placeholder=" "
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          />
+          <label class="form-check-label">Valor</label>
+        </div>
+
+        <div class="row label-float">
+          <input
+            formControlName="ds_transaction"
+            type="text"
+            class="form-control w-100"
+            placeholder=" "
+          />
+          <label class="form-check-label">Descrição</label>
+        </div>
+
+        <div class="row label-float">
+          <button class="btn btn-primary" (click)="showOptionsCategories()">
+            <span class="float-left" *ngIf="!subCategorySelected"
+              >Categoria</span
+            >
+            <span class="float-left" *ngIf="subCategorySelected">{{
+              subCategorySelected.nm_category_group_sub
+            }}</span>
+            <i
+              class="fas fa-chevron-circle-right"
+              style="float: right;padding: 5px;"
+              *ngIf="!subCategorySelected"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        [disabled]="
+          submittingForm || resourceForm.invalid || !subCategorySelected
+        "
+        type="submit"
+        mdbBtn
+        class="btn btn-light relative waves-light"
+        mdbWavesEffect
+      >
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>
+
+<ng-template #categoriesTemplate>
+  <div class="modal-content">
+    <div class="modal-header">
+      <button
+        type="button"
+        class="close pull-right"
+        (click)="showOptionsCategories()"
+      >
+        <span aria-hidden="true">
+          <i class="fas fa-chevron-left"></i>
+        </span>
+      </button>
+      <h4
+        class="modal-title w-100"
+        id="myModalLabel"
+        style="padding-left: 95px"
+      >
+        Categorias
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar Categorias"
+            aria-label="Buscar Categorias"
+            #searchCategory
+            (keyup)="searchSubCategory(searchCategory.value)"
+            autofocus
+          />
+        </div>
+      </div>
+
+      <div class="row" style="overflow-y: scroll;height: 560px;">
+        <div class="list-group w-100 mb-2" *ngFor="let category of categories">
+          <h5 class="pl-2" style="font-size:medium">
+            {{ category.nm_category_group }}
+          </h5>
+          <div
+            class="list-group-item list-group-item-action"
+            *ngFor="let subCategory of category.category_group_sub"
+            (click)="selectCategory(subCategory)"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ subCategory.nm_category_group_sub }}</h5>
+              <small>
+                <i [ngClass]="category.icon"></i>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

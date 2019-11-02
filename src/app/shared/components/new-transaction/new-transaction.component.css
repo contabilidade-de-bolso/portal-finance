@@ -1,0 +1,134 @@
+.modal-header > h4 {
+  padding: 4px 0px 0px 50px;
+  font-weight: 900;
+}
+
+.tp-transaction {
+  font-size: larger;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.row {
+  margin-top: 10px;
+}
+
+.input-group input {
+  border-left: 0;
+}
+
+.input-group-text {
+  background-color: #53b982;
+  border: 1px solid #53b982;
+  color: #fff;
+}
+
+.list-group-item {
+  border: 0px;
+  border-bottom: solid 1px;
+}
+
+.list-group-item h5 {
+  font-weight: 100;
+}
+
+.content-new-transaction input {
+  text-align: right;
+}
+
+.label-float {
+  position: relative;
+  padding-top: 13px;
+}
+
+.label-float input {
+  border: 0;
+  border-bottom: 2px solid lightgrey;
+  outline: none;
+  min-width: 180px;
+  font-size: 25px;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.label-float input::placeholder {
+  color: transparent;
+}
+
+.label-float label {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 10px;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  font-size: 20px;
+}
+
+.label-float input:required:invalid + label {
+  color: red;
+}
+
+.label-float input:focus:required:invalid {
+  border-bottom: 2px solid red;
+}
+
+.label-float input:required:invalid + label:before {
+  content: "*";
+}
+
+.label-float input:focus + label,
+.label-float input:not(:placeholder-shown) + label {
+  font-size: 15px;
+  margin-top: -6px;
+  color: #2f4f4f;
+  font-weight: inherit;
+}
+
+.form-radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  position: relative;
+  background-color: #f1f1f1;
+  color: #666;
+  top: 10px;
+  height: 30px;
+  width: 30px;
+  border: 0;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-right: 7px;
+  outline: none;
+}
+.form-radio:checked::before {
+  position: absolute;
+  font: 13px/1 "Open Sans", sans-serif;
+  left: 11px;
+  top: 7px;
+  content: "\02143";
+  transform: rotate(40deg);
+}
+.form-radio:hover {
+  background-color: #53b982;
+}
+.form-radio:checked {
+  background-color: #53b982;
+}
+#radio_cd_transaction_type {
+  margin: 18px 0px 0px 0px;
+}
+
+label {
+  font: 18px/1.7 "Open Sans", sans-serif;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+}

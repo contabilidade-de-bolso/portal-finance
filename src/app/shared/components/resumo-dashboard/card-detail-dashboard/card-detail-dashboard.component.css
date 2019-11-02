@@ -1,0 +1,11 @@
+.card-title {
+  font-weight: bold;
+}
+
+.card {
+  border-radius: 4%;
+}
+
+.card-body p {
+  font-size: 25px;
+}

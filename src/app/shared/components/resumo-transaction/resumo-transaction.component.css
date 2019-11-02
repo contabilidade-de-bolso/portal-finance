@@ -1,0 +1,16 @@
+.resumo-transaction {
+  background: #fff;
+  width: 98%;
+  height: 420px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: 20px 15px;
+  border-radius: 15px;
+}
+
+.resumo-chart,
+.resumo-grid {
+  float: left;
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,23 @@
+.resumo-dashboard{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.resumo-dashboard .card-title{
+    font-weight: bold;
+}
+
+.resumo-dashboard .card{
+    border-radius: 4%;
+}
+
+.resumo-dashboard .card-body p{
+    font-size: 22px;
+}
+
+.icon-card-dashboard{
+    font-size: 80px;
+}

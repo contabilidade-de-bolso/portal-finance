@@ -1,0 +1,24 @@
+.auth {
+  height: 800px;
+}
+
+.content {
+  border: 1px solid;
+  border-radius: 15px;
+  top: 10%;
+  height: 600px;
+  margin: auto;
+  width: 600px;
+}
+
+.container-base {
+  padding: 20px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+h1 {
+  font-size: 25px;
+  height: 47px;
+  line-height: 2;
+}

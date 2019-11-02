@@ -1,0 +1,34 @@
+.card {
+  border-radius: 4%;
+  text-align: right;
+}
+
+.cards-detail {
+  padding: 15px 0px;
+}
+.card-text {
+  font-weight: lighter;
+}
+
+.card-title {
+  font-weight: bold;
+}
+.card-body p {
+  font-size: 25px;
+}
+
+.card-icon {
+  right: 20px;
+  position: absolute;
+  top: 10px;
+  font-size: 30px;
+}
+
+.card-border-icon {
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  border-radius: 30px;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
