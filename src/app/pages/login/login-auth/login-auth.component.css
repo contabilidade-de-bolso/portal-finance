@@ -3,7 +3,7 @@
 }
 
 .content {
-  border: 1px solid;
+  border: 1px solid transparent;
   border-radius: 15px;
   top: 10%;
   height: 600px;
@@ -29,6 +29,7 @@
 .input-group > .custom-file {
   color: #070a0e;
   border-color: #53b982;
+  background: transparent;
 }
 
 span.input-group-text {

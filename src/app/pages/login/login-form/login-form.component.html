@@ -6,8 +6,8 @@
       icon-class="fas fa-chevron-left"
       button-text=""
       button-link="/"
-      button-class="btn btn-light w-100"
-      title-class="text-center text-uppercase title-login"
+      button-class="btn btn-primary w-100"
+      title-class="text-primary text-center text-uppercase title-login"
       placement-tooltip="left"
       message-tooltip="Voltar"
     ></app-page-header>
@@ -17,7 +17,7 @@
       <div class="form-row">
         <!-- NOME -->
         <div class="form-group col-md-12">
-          <label class="text-light" for="name">Nome</label>
+          <label class="text-primary" for="name">Nome</label>
           <div class="input-group mb-3">
             <input
               [ngClass]="
@@ -41,7 +41,7 @@
         </div>
         <!-- USERNAME -->
         <div class="form-group col-md-6">
-          <label class="text-light" for="username">Usuário</label>
+          <label class="text-primary" for="username">Usuário</label>
           <div class="input-group mb-3">
             <input
               [ngClass]="
@@ -65,7 +65,7 @@
         </div>
         <!-- EMAIL -->
         <div class="form-group col-md-6">
-          <label class="text-light" for="email">Email</label>
+          <label class="text-primary" for="email">Email</label>
           <div class="input-group mb-3">
             <input
               [ngClass]="
@@ -92,7 +92,7 @@
       <!-- LINHA 2 -->
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label class="text-light" for="password">Senha</label>
+          <label class="text-primary" for="password">Senha</label>
           <div class="input-group mb-3">
             <input
               [ngClass]="
@@ -112,7 +112,7 @@
           </div>
         </div>
         <div class="form-group col-md-6">
-          <label class="text-light" for="ok_password"
+          <label class="text-primary" for="ok_password"
             >Confirmação de Senha</label
           >
           <div class="input-group mb-3">
@@ -148,7 +148,9 @@
           </button>
         </div>
         <div class="form-group col-md-6">
-          <button type="reset" class="float-right btn btn-light">LIMPAR</button>
+          <button type="reset" class="float-right btn btn-outline-primary">
+            LIMPAR
+          </button>
         </div>
       </div>
     </form>
