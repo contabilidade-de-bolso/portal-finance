@@ -19,6 +19,7 @@ div.container-content {
   padding: 0px 15px;
   height: -webkit-fill-available;
   background: #dbdbdb;
+  height: 100%;
 }
 
 input.form-control,
