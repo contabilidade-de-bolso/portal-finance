@@ -253,7 +253,7 @@ export class ResumoTransactionConfiguration {
             distance: -50,
             borderWidth: 0,
             style: {
-              color: "#FFF",
+              color: "#46464c",
               textOutline: "0",
               fontWeight: null
             }

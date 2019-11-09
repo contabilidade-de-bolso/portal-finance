@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-6">
         <h5 class="card-title">
-          {{ detail.title }}
+          {{ detail.date | formatIntDate }}
         </h5>
         <h5 class="card-title">
-          {{ detail.date | formatIntDate }}
+          {{ detail.title }}
         </h5>
         <p class="card-text">R$ {{ detail.value | number: "1.2-2" }}</p>
       </div>
