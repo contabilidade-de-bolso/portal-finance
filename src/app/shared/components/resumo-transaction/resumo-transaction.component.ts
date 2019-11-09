@@ -7,6 +7,7 @@ import { chart } from "highcharts";
 import { FinanceGridComponent } from "../finance-grid/finance-grid.component";
 import { EventService } from "src/app/core/services/event.service";
 import { ToastrService } from "ngx-toastr";
+import { FooterGridTransaction } from "../../models/footer-grid-resumo-transaction.model";
 
 @Component({
   selector: "resumo-transaction",
@@ -18,11 +19,12 @@ export class ResumoTransactionComponent implements OnInit {
   public chart: any;
   public highcharts = Highcharts;
 
-  //
+  // GRID
   public title: any;
   public columnDefs: any;
   public rowData: any;
   public gridOptions: any;
+  public pinnedTotalRow: any;
 
   public properties;
 
@@ -87,6 +89,7 @@ export class ResumoTransactionComponent implements OnInit {
       .then(resp => {
         this.gridOptions.columnDefs = this.columnDefs.COLUMNSDEF.CATEGORYSUB;
         this.gridOptions.rowData = resp.result;
+        this.updateRowDataFooter(resp.result, "CATEGORYSUB");
       })
       .catch(err => {
         this.toastr.error("Não foi possível carregar seus dados.", "Desculpe", {
@@ -117,6 +120,8 @@ export class ResumoTransactionComponent implements OnInit {
       .then(resp => {
         this.gridOptions.columnDefs = this.columnDefs.COLUMNSDEF.CATEGORY;
         this.gridOptions.rowData = resp.result;
+
+        this.updateRowDataFooter(resp.result, "CATEGORY");
       })
       .catch(err => {
         this.toastr.error("Não foi possível carregar seus dados.", "Desculpe", {
@@ -147,5 +152,28 @@ export class ResumoTransactionComponent implements OnInit {
     const series = { id, data };
     if (this.chart.series.length > 0) this.chart.series[0].remove();
     this.chart.addSeries(series);
+  }
+
+  public updateRowDataFooter(footerRowData, type: string) {
+    var vl_transaction_total = 0;
+    footerRowData.map(data => {
+      vl_transaction_total += parseFloat(data.vl_transaction);
+    });
+
+    var footer = new FooterGridTransaction(
+      0,
+      "Total",
+      0,
+      vl_transaction_total,
+      "",
+      { icon: "" },
+      {}
+    );
+    this.pinnedTotalRow = [footer];
+    if (this.gridOptions.api) {
+      this.gridOptions.api.setPinnedBottomRowData([footer]);
+    } else {
+      this.gridOptions.pinnedBottomRowData = [footer];
+    }
   }
 }

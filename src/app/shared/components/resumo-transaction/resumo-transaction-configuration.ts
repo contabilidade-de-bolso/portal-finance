@@ -27,7 +27,7 @@ export class ResumoTransactionConfiguration {
               return (
                 '<span class="rag-element">' +
                 '<i class="' +
-                params.data.category_group.icon +
+                (params.data.category_group.icon || "") +
                 '"></i>' +
                 "</span>"
               );
@@ -48,7 +48,7 @@ export class ResumoTransactionConfiguration {
             sortable: true
           },
           {
-            headerName: "Dt da transação",
+            headerName: "Dt Transação",
             field: "dt_transaction",
             cellClass: ["text-center", "pointer"],
             headerClass: "text-center",
@@ -59,7 +59,7 @@ export class ResumoTransactionConfiguration {
             }
           },
           {
-            headerName: "Vl. transação",
+            headerName: "Vl. Transação",
             field: "vl_transaction",
             cellClass: ["text-right", "pointer"],
             headerClass: "text-center",
@@ -78,6 +78,15 @@ export class ResumoTransactionConfiguration {
                 this.decimalPipe.transform(params.value, "1.2-2") +
                 "</span>"
               );
+            },
+            pinnedRowCellRenderer: params => {
+              var classElemnt =
+                parseFloat(params.data.vl_transaction) >= 0
+                  ? "text-success bold"
+                  : "text-danger";
+              return `<span class="rag-element ${classElemnt}"> R$ 
+                ${this.decimalPipe.transform(params.value, "1.2-2")}
+                </span>`;
             }
           }
         ],
@@ -148,6 +157,15 @@ export class ResumoTransactionConfiguration {
                 this.decimalPipe.transform(params.value, "1.2-2") +
                 "</span>"
               );
+            },
+            pinnedRowCellRenderer: params => {
+              var classElemnt =
+                parseFloat(params.data.vl_transaction) >= 0
+                  ? "text-success bold"
+                  : "text-danger";
+              return `<span class="rag-element ${classElemnt}"> R$ 
+                ${this.decimalPipe.transform(params.value, "1.2-2")}
+                </span>`;
             }
           }
         ]
