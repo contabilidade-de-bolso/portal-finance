@@ -12,7 +12,7 @@ export class CardDetailDashboardConfiguration {
         plotBorderWidth: 0,
         plotShadow: false,
         width: 150,
-        height: 150
+        height: 123
       },
       title: {
         text: "",
@@ -28,7 +28,7 @@ export class CardDetailDashboardConfiguration {
       },
       plotOptions: {
         pie: {
-          size: "210%",
+          size: "260%",
           dataLabels: {
             enabled: false
           },

@@ -1,84 +1,86 @@
-.navbar{
-    padding: 10px;
-    background: #F8F8F8;
-    margin-bottom: 0;
-    height: 70px !important;
-    border-bottom: #141414 solid 1.5px;
+.navbar {
+  padding: 10px;
+  background: #f8f8f8;
+  margin-bottom: 0;
+  height: 60px !important;
+  border-bottom: #141414 solid 1.5px;
 }
 
-.navbar > .navbar-brand{
-    font-size: 50px
+.navbar > .navbar-brand {
+  font-size: 50px;
 }
 
-.navbar-nav > li{
-    cursor: pointer;
-}
-
-.navbar-nav > li > a {
-    position: relative;
-    display: block;
-    padding: 10px 15px;
+.navbar-nav > li {
+  cursor: pointer;
 }
 
 .navbar-nav > li > a {
-    color: grey;
-    border-radius: 0;
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+.navbar-nav > li > a {
+  color: grey;
+  border-radius: 0;
 }
 
 .navbar-nav > li > a:hover {
-    background-color: transparent;
-    color: #53B982;
-    border-bottom: 5px solid #53B982;
+  text-decoration: none;
+  background-color: transparent;
+  color: #53b982;
+  border-bottom: 5px solid #53b982;
 }
 
-.navbar-nav > li.active > a, 
-.navbar-nav > li.active > a:hover, 
+.navbar-nav > li.active > a,
+.navbar-nav > li.active > a:hover,
 .navbar-nav > li.active > a:focus {
-    color: #53B982;
-    border-bottom: 5px solid #53B982;
+  text-decoration: none;
+  color: #53b982;
+  border-bottom: 5px solid #53b982;
 }
 
-.navbar > .navbar-brand > span.logo{
-    margin-left: 14px;
+.navbar > .navbar-brand > span.logo {
+  margin-left: 14px;
 }
 
-.dropdown-menu{
-    min-width: 16rem;
-    padding:0px;
+.dropdown-menu {
+  min-width: 16rem;
+  padding: 0px;
 }
 
-.dropdown-item{
-    font: inherit;
-    height: 50px;
-    border-top: #000 solid 1px;
+.dropdown-item {
+  font: inherit;
+  height: 50px;
+  border-top: #000 solid 1px;
 }
 
-.dropdown-item > span.icon{
-    margin-right: 40px;
+.dropdown-item > span.icon {
+  margin-right: 40px;
 }
 
-.dropdown-toggle::after{
-    display: none;
+.dropdown-toggle::after {
+  display: none;
 }
 
-.menu-conf{
-    padding: 5px;
-    border: #D8D8D8 1px solid;
-    border-radius: 50%;
-    background: #D8D8D8;
-    font-size: 20px;
-    cursor: pointer;
-    height: 55px;
-    width: 55px;
+.menu-conf {
+  padding: 5px;
+  border: #d8d8d8 1px solid;
+  border-radius: 50%;
+  background: #d8d8d8;
+  font-size: 20px;
+  cursor: pointer;
+  height: 45px;
+  width: 45px;
 }
 
-.vertical-divider{
-    border-left: thin solid #D8D8D8;
-    margin: 0 15px;
-    height: 30px;
-    vertical-align: middle;
+.vertical-divider {
+  border-left: thin solid #d8d8d8;
+  margin: 0 15px;
+  height: 30px;
+  vertical-align: middle;
 }
 
-.new-transaction{
-    cursor: pointer;
+.new-transaction {
+  cursor: pointer;
 }

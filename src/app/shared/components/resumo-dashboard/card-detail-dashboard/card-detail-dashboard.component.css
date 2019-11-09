@@ -3,9 +3,11 @@
 }
 
 .card {
+  height: 145px;
   border-radius: 4%;
 }
 
 .card-body p {
   font-size: 25px;
+  font-weight: 300;
 }
