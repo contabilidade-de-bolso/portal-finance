@@ -1,11 +1,15 @@
 import { Injectable } from "@angular/core";
 import { colors } from "src/app/shared/constants/color-default";
+import { DecimalPipe } from "@angular/common";
 
 @Injectable({
   providedIn: "root"
 })
 export class CardDetailDashboardConfiguration {
+  public decimalPipe: DecimalPipe = new DecimalPipe("pt-BR");
+
   public getOptionsCharts(color: string = "DEFAULT"): any {
+    let self = this;
     return {
       chart: {
         plotBackgroundColor: null,
@@ -22,9 +26,15 @@ export class CardDetailDashboardConfiguration {
       tooltip: {
         shared: true,
         headerFormat: "",
-        pointFormat:
-          '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
-          "Valor da Transação: R$ <b>{point.y}</b><br/>"
+        formatter: function() {
+          return `
+            <span style="color:${this.point.color}">\u25CF</span>
+            <b>${this.point.options.name}</b><br/>
+            R$ <b>${self.decimalPipe.transform(
+              this.point.options.y,
+              "1.2-2"
+            )}</b><br/>`;
+        }
       },
       plotOptions: {
         pie: {
