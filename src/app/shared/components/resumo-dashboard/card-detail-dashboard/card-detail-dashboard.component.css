@@ -4,7 +4,7 @@
 
 .card {
   height: 145px;
-  border-radius: 4%;
+  border-radius: 15px;
 }
 
 .card-body p {
