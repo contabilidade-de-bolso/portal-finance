@@ -9,6 +9,14 @@ export class TransactionDetailService {
 
   constructor(private httpService: HttpService) {}
 
+  public getTransactionDetailGrid(): Promise<any> {
+    return this.httpService.callMethod(
+      TransactionDetailService.TRANSACTION_DETAIL_API,
+      "getTransactionDetailGrid",
+      {}
+    );
+  }
+
   public getDetailCard(cd_transaction_type: string): Promise<any> {
     return this.httpService.callMethod(
       TransactionDetailService.TRANSACTION_DETAIL_API,

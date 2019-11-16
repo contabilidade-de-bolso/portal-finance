@@ -28,16 +28,16 @@
 .navbar-nav > li > a:hover {
   text-decoration: none;
   background-color: transparent;
-  color: #78C2AD;
-  border-bottom: 5px solid #78C2AD;
+  color: #78c2ad;
+  border-bottom: 5px solid #78c2ad;
 }
 
 .navbar-nav > li.active > a,
 .navbar-nav > li.active > a:hover,
 .navbar-nav > li.active > a:focus {
   text-decoration: none;
-  color: #78C2AD;
-  border-bottom: 5px solid #78C2AD;
+  color: #78c2ad;
+  border-bottom: 5px solid #78c2ad;
 }
 
 .navbar > .navbar-brand > span.logo {
@@ -56,7 +56,7 @@
 }
 
 .dropdown-item > span.icon {
-  margin-right: 40px;
+  margin-right: 75px;
 }
 
 .dropdown-toggle::after {

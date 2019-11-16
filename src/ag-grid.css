@@ -669,6 +669,7 @@ ag-grid-aurelia {
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
+  border-bottom: thin solid #ddd;
 }
 
 .ag-row-hover {
