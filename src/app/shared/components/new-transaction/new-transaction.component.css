@@ -17,12 +17,6 @@
   border-left: 0;
 }
 
-.input-group-text {
-  background-color: #53b982;
-  border: 1px solid #53b982;
-  color: #fff;
-}
-
 .list-group-item {
   border: 0px;
   border-bottom: solid 1px;
@@ -116,10 +110,10 @@
   transform: rotate(40deg);
 }
 .form-radio:hover {
-  background-color: #53b982;
+  background-color: #78C2AD;
 }
 .form-radio:checked {
-  background-color: #53b982;
+  background-color: #78C2AD;
 }
 #radio_cd_transaction_type {
   margin: 18px 0px 0px 0px;
@@ -130,5 +124,9 @@ label {
   color: #333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+}
+
+.list-group-item-action {
   cursor: pointer;
 }

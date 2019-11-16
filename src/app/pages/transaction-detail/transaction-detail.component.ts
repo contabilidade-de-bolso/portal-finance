@@ -9,8 +9,7 @@ import { ListNavBar } from "src/app/shared/components/navbar/navbar.component";
 export class TransactionDetailComponent implements OnInit {
   list_nav_bar: Array<ListNavBar> = [
     { text: "Resumo", link: "/home", active: "" },
-    { text: "Transação", link: "/transacao", active: "active" },
-    { text: "Receitas e Despesas", link: "/", active: "" }
+    { text: "Transações", link: "/transacao", active: "active" }
   ];
 
   constructor() {}

@@ -2,9 +2,9 @@
 
 body {
   /* background-image: url("/assets/bg/bg-authenticate.png"); */
-  background-color: #53b982;
+  color: #545454;
+  background-color: #78c2ad;
   background-size: cover;
-  font-family: Helvetica, Arial, sans-serif;
   overflow: hidden;
   position: absolute;
   width: 100%;
@@ -26,31 +26,26 @@ input.form-control,
 select.form-control {
   outline: 0;
   box-shadow: none !important;
-  color: #070a0e;
-  border-color: #53b982;
   background: center;
   width: 75%;
   height: 60px;
-  font-family: "Helvetica Neue", "Arial", sans-serif;
   font-style: italic;
   font-variant-ligatures: normal;
   font-weight: 100;
   font-size: 20px;
   border-top: 0px;
   border-right: 0px;
-  border-left: 1px solid #53b982;
-  border-bottom: 1px solid #53b982;
+  border-left: 1px solid #78c2ad;
+  border-bottom: 1px solid #78c2ad;
   text-transform: none;
 }
 
 button:not(.btn-link) {
   width: 100%;
   height: 55px;
-  font-family: "Helvetica Neue", "Arial", sans-serif;
   font-style: italic;
   font-variant-ligatures: normal;
   font-weight: 100;
-  font-size: 30px;
 }
 
 .modal-header button {
@@ -74,4 +69,8 @@ button:not(.btn-link) {
   height: auto;
   min-height: 100%;
   top: 0;
+}
+
+.form-control:focus {
+  background: transparent;
 }

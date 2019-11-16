@@ -28,16 +28,16 @@
 .navbar-nav > li > a:hover {
   text-decoration: none;
   background-color: transparent;
-  color: #53b982;
-  border-bottom: 5px solid #53b982;
+  color: #78C2AD;
+  border-bottom: 5px solid #78C2AD;
 }
 
 .navbar-nav > li.active > a,
 .navbar-nav > li.active > a:hover,
 .navbar-nav > li.active > a:focus {
   text-decoration: none;
-  color: #53b982;
-  border-bottom: 5px solid #53b982;
+  color: #78C2AD;
+  border-bottom: 5px solid #78C2AD;
 }
 
 .navbar > .navbar-brand > span.logo {

@@ -9,8 +9,7 @@ import { ListNavBar } from "src/app/shared/components/navbar/navbar.component";
 export class ReportsComponent implements OnInit {
   list_nav_bar: Array<ListNavBar> = [
     { text: "Resumo", link: "/", active: "active" },
-    { text: "Transação", link: "/transacao", active: "" },
-    { text: "Receitas e Despesas", link: "/", active: "" }
+    { text: "Transações", link: "/transacao", active: "" }
   ];
 
   constructor() {}

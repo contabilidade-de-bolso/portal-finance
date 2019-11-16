@@ -27,8 +27,7 @@
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,
 .input-group > .custom-file {
-  color: #070a0e;
-  border-color: #53b982;
+  border-color: #78c2ad;
   background: transparent;
 }
 
