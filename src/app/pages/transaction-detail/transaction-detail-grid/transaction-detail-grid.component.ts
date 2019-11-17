@@ -1,17 +1,25 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { FinanceGridComponent } from "src/app/shared/components/finance-grid/finance-grid.component";
 import { TransactionDetailConfiguration } from "../transaction-detail-configuration";
 import { ToastrService } from "ngx-toastr";
 import { TransactionDetailService } from "../transaction-detail.service";
+import { MDBModalService, MDBModalRef } from "angular-bootstrap-md";
+import { EventService } from "src/app/core/services/event.service";
+import { Subscription } from "rxjs";
+import { ModalMessageConfirmedPaymentComponent } from "./modal-message-confirmed-payment/modal-message-confirmed-payment.component";
 
 @Component({
   selector: "transaction-detail-grid",
   templateUrl: "./transaction-detail-grid.component.html",
-  styleUrls: ["./transaction-detail-grid.component.css"]
+  styleUrls: ["./transaction-detail-grid.component.css"],
+  providers: []
 })
-export class TransactionDetailGridComponent implements OnInit {
+export class TransactionDetailGridComponent implements OnInit, OnDestroy {
   @ViewChild("transacrionDetail")
+  public modalRef: MDBModalRef;
   public transacrionDetail: FinanceGridComponent;
+  public call_update_transaction_subscribe: Subscription;
+  public call_delete_transaction_subscribe: Subscription;
 
   public gridOptions: any;
   public columnDefs: any;
@@ -20,8 +28,19 @@ export class TransactionDetailGridComponent implements OnInit {
   constructor(
     private service: TransactionDetailService,
     private configuration: TransactionDetailConfiguration,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: MDBModalService,
+    private eventService: EventService
   ) {
+    this.call_update_transaction_subscribe = this.eventService.subscribe(
+      "CALL_UPDATE_TRANSACTION",
+      this.modalMessageConfirmedPayment
+    );
+
+    this.call_delete_transaction_subscribe = this.eventService.subscribe(
+      "CALL_DELETE_TRANSACTION",
+      this.modalMessageConfirmedPayment
+    );
     this.columnDefs = this.configuration.getColumnsDefs();
   }
 
@@ -29,6 +48,11 @@ export class TransactionDetailGridComponent implements OnInit {
     this.getOptions();
 
     this.refreshTransactionDetail();
+  }
+
+  ngOnDestroy() {
+    this.eventService.unsubscribe(this.call_update_transaction_subscribe);
+    this.eventService.unsubscribe(this.call_delete_transaction_subscribe);
   }
 
   public getOptions() {
@@ -51,5 +75,90 @@ export class TransactionDetailGridComponent implements OnInit {
         });
         console.log("err", err);
       });
+  };
+
+  public deleteTransaction = async id => {
+    await this.service
+      .deleteTransaction(id)
+      .then(resp => {
+        if (resp.success) {
+          this.toastr.success("Exclusão efetuada com successo.", "Parabéns", {
+            timeOut: 5000,
+            positionClass: "toast-bottom-left"
+          });
+
+          this.refreshTransactionDetail();
+        }
+      })
+      .catch(err => {
+        this.toastr.error(
+          "Erro ao atualizar os dados do transação.",
+          "Desculpe",
+          {
+            timeOut: 5000,
+            positionClass: "toast-bottom-right"
+          }
+        );
+        console.log("err", err);
+      });
+  };
+
+  public updateTransactionPending = async id => {
+    await this.service
+      .updateTransactionPending(id)
+      .then(resp => {
+        if (resp.success) {
+          this.toastr.success(
+            "Atualização efetuada com successo.",
+            "Parabéns",
+            {
+              timeOut: 5000,
+              positionClass: "toast-bottom-left"
+            }
+          );
+
+          this.refreshTransactionDetail();
+        }
+      })
+      .catch(err => {
+        this.toastr.error(
+          "Erro ao atualizar os dados do transação.",
+          "Desculpe",
+          {
+            timeOut: 5000,
+            positionClass: "toast-bottom-right"
+          }
+        );
+        console.log("err", err);
+      });
+  };
+
+  public getMethodByName = (method: string, params: any) => {
+    const list = {
+      CONFIRMED_PAYMENT: this.updateTransactionPending,
+      DELETE_TRANSACTION: this.deleteTransaction
+    };
+
+    return (
+      list[method](params.id) || alert("Não foi possível atualizar os dados.")
+    );
+  };
+
+  public modalMessageConfirmedPayment = params => {
+    this.modalRef = this.modalService.show(
+      ModalMessageConfirmedPaymentComponent,
+      {
+        backdrop: true,
+        show: false,
+        class: "modal-md",
+        animated: true,
+        data: { data: params.data, type: params.type }
+      }
+    );
+
+    this.modalRef.content.action.subscribe(async (result: any) => {
+      const { doAction, id, type } = result;
+      if (doAction) this.getMethodByName(type, { id });
+    });
   };
 }

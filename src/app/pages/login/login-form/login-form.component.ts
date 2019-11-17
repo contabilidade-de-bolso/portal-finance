@@ -84,7 +84,7 @@ export class LoginFormComponent implements OnInit {
       .create(user)
       .then(resp => {
         if (resp.success) {
-          this.toastr.warning("Usuário cadastrado com sucesso.", "Parabéns", {
+          this.toastr.warning("Usuário cadastrado com successo.", "Parabéns", {
             timeOut: 5000,
             positionClass: "toast-bottom-right"
           });

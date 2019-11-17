@@ -37,6 +37,7 @@ import { TransactionDetailCardComponent } from "../pages/transaction-detail/tran
 import { TransactionDetailChartComponent } from "../pages/transaction-detail/transaction-detail-chart/transaction-detail-chart.component";
 import { TransactionDetailGridComponent } from "../pages/transaction-detail/transaction-detail-grid/transaction-detail-grid.component";
 import { MessageSimpleComponent } from "./components/tooltip-custom/message-simple/message-simple.component";
+import { ModalMessageConfirmedPaymentComponent } from "../pages/transaction-detail/transaction-detail-grid/modal-message-confirmed-payment/modal-message-confirmed-payment.component";
 
 registerLocaleData(localePtBr);
 
@@ -50,7 +51,10 @@ registerLocaleData(localePtBr);
     NgxCurrencyModule,
     AgGridModule.withComponents([MessageSimpleComponent])
   ],
-  entryComponents: [NewTransactionComponent],
+  entryComponents: [
+    NewTransactionComponent,
+    ModalMessageConfirmedPaymentComponent
+  ],
   declarations: [
     HighchartsChartComponent,
     BreadCrumbComponent,
@@ -60,6 +64,7 @@ registerLocaleData(localePtBr);
     ServerErrorMessagesComponent,
     ListActionLeftComponent,
     NewTransactionComponent,
+    ModalMessageConfirmedPaymentComponent,
     ResumoDashboardComponent,
     ResumoTransactionComponent,
     FinanceGridComponent,

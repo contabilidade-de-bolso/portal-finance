@@ -57,7 +57,7 @@ export class TransactionDetailConfiguration {
           },
           {
             headerName: "Sub Categoria",
-            field: "category_group.nm_category_group",
+            field: "category_group_sub.nm_category_group_sub",
             cellClass: ["text-left"],
             headerClass: "text-center",
             sortable: true
@@ -106,8 +106,11 @@ export class TransactionDetailConfiguration {
               if (param.value) return '<i class="icon fas fa-check"></i>';
               return "";
             },
-            tooltipValueGetter: function(params) {
-              return { value: "Pendente" };
+            onCellClicked: event => {
+              this.eventService.dispatch("CALL_UPDATE_TRANSACTION", {
+                data: event.data,
+                type: "CONFIRMED_PAYMENT"
+              });
             }
           },
           {
@@ -119,9 +122,6 @@ export class TransactionDetailConfiguration {
             width: 60,
             cellRenderer: param => {
               return '<i class="icon fas fa-pencil-alt"></i>';
-            },
-            tooltipValueGetter: function(params) {
-              return { value: "Editar" };
             }
           },
           {
@@ -134,9 +134,11 @@ export class TransactionDetailConfiguration {
             cellRenderer: param => {
               return '<i class="icon fas fa-trash-alt"></i>';
             },
-            tooltipComponent: "MessageSimpleTooltip",
-            tooltipValueGetter: () => {
-              return { value: "Excluir" };
+            onCellClicked: event => {
+              this.eventService.dispatch("CALL_DELETE_TRANSACTION", {
+                data: event.data,
+                type: "DELETE_TRANSACTION"
+              });
             }
           }
         ],

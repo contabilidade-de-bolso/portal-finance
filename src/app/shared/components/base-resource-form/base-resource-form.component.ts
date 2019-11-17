@@ -135,7 +135,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
 
   protected actionsForSuccess(resource: T) {
     this.submittingForm = false;
-    this.toastr.success("Solicitação processada com sucesso!");
+    this.toastr.success("Solicitação processada com successo!");
 
     if (!this.route.snapshot.parent.url.length) return;
 

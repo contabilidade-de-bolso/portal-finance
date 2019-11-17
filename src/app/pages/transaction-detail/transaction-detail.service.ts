@@ -32,4 +32,20 @@ export class TransactionDetailService {
       { cd_transaction_type }
     );
   }
+
+  public updateTransactionPending(id: string): Promise<any> {
+    return this.httpService.callMethod(
+      TransactionDetailService.TRANSACTION_DETAIL_API,
+      "updateTransactionPending",
+      { id }
+    );
+  }
+
+  public deleteTransaction(id: string): Promise<any> {
+    return this.httpService.callMethod(
+      TransactionDetailService.TRANSACTION_DETAIL_API,
+      "deleteTransaction",
+      { id }
+    );
+  }
 }

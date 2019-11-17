@@ -91,7 +91,7 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
       .then(resp => {
         if (resp.success) {
           this.toastr.success(
-            "Sua transação foi cadastrada com sucesso.",
+            "Sua transação foi cadastrada com successo.",
             "Parabéns",
             {
               timeOut: 5000,
