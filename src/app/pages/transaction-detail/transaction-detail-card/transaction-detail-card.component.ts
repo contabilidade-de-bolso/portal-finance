@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { TransactionDetailService } from "../transaction-detail.service";
+import { Subscription } from "rxjs";
+import { EventService } from "src/app/core/services/event.service";
 
 @Component({
   selector: "transaction-detail-card",
@@ -7,6 +9,9 @@ import { TransactionDetailService } from "../transaction-detail.service";
   styleUrls: ["./transaction-detail-card.component.css"]
 })
 export class TransactionDetailCardComponent implements OnInit {
+  public refresh_resume_transaction_subscribe: Subscription;
+  public refresh_transaction_detail_card_subscribe: Subscription;
+
   public icon: any = {
     PENDING: "fas fa-check",
     NOT_PENDING: "fas fa-check-double",
@@ -26,18 +31,38 @@ export class TransactionDetailCardComponent implements OnInit {
     AMB: {
       PENDING: "Pendentes",
       NOT_PENDING: "Pagas",
-      BALANCE: "Balanço"
+      BALANCE: "Recebidas"
     }
   };
   public cards = [];
   public cd_transaction_type: any;
-  constructor(private service: TransactionDetailService) {}
+  constructor(
+    private service: TransactionDetailService,
+    private eventService: EventService
+  ) {}
 
   ngOnInit() {
     this.getDetailCard();
+
+    this.refresh_resume_transaction_subscribe = this.eventService.subscribe(
+      "REFRESH_RESUME_TRANSACTION",
+      this.getDetailCard
+    );
+
+    this.refresh_transaction_detail_card_subscribe = this.eventService.subscribe(
+      "REFRESH_TRANSACTION_DETAIL_CARD",
+      this.getDetailCard
+    );
   }
 
-  getDetailCard() {
+  ngOnDestroy(): void {
+    this.eventService.unsubscribe(this.refresh_resume_transaction_subscribe);
+    this.eventService.unsubscribe(
+      this.refresh_transaction_detail_card_subscribe
+    );
+  }
+
+  getDetailCard = () => {
     this.service
       .getDetailCard(this.cd_transaction_type)
       .then(resp => {
@@ -51,5 +76,5 @@ export class TransactionDetailCardComponent implements OnInit {
       .catch(err => {
         console.log("err", err);
       });
-  }
+  };
 }

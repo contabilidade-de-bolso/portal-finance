@@ -20,6 +20,7 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
   public transacrionDetail: FinanceGridComponent;
   public call_update_transaction_subscribe: Subscription;
   public call_delete_transaction_subscribe: Subscription;
+  public refresh_resume_transaction_subscribe: Subscription;
 
   public gridOptions: any;
   public columnDefs: any;
@@ -41,18 +42,24 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
       "CALL_DELETE_TRANSACTION",
       this.modalMessageConfirmedPayment
     );
+
+    this.refresh_resume_transaction_subscribe = this.eventService.subscribe(
+      "REFRESH_RESUME_TRANSACTION",
+      this.refreshTransactionDetail
+    );
+
     this.columnDefs = this.configuration.getColumnsDefs();
   }
 
   ngOnInit() {
     this.getOptions();
-
     this.refreshTransactionDetail();
   }
 
   ngOnDestroy() {
     this.eventService.unsubscribe(this.call_update_transaction_subscribe);
     this.eventService.unsubscribe(this.call_delete_transaction_subscribe);
+    this.eventService.unsubscribe(this.refresh_resume_transaction_subscribe);
   }
 
   public getOptions() {
@@ -101,6 +108,8 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
         );
         console.log("err", err);
       });
+
+    this.eventService.dispatch("REFRESH_TRANSACTION_DETAIL_CARD", true);
   };
 
   public updateTransactionPending = async id => {
@@ -131,6 +140,8 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
         );
         console.log("err", err);
       });
+
+    this.eventService.dispatch("REFRESH_TRANSACTION_DETAIL_CARD", true);
   };
 
   public getMethodByName = (method: string, params: any) => {

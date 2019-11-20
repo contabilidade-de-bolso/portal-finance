@@ -99,6 +99,7 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
             }
           );
 
+          this.eventService.dispatch("REFRESH_TRANSACTION_DETAIL_CARD", true);
           this.eventService.dispatch("REFRESH_RESUME_TRANSACTION", {
             success: true
           });
