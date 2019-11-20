@@ -7,6 +7,7 @@ import { MDBModalService, MDBModalRef } from "angular-bootstrap-md";
 import { EventService } from "src/app/core/services/event.service";
 import { Subscription } from "rxjs";
 import { ModalMessageConfirmedPaymentComponent } from "./modal-message-confirmed-payment/modal-message-confirmed-payment.component";
+import { NewTransactionComponent } from "src/app/shared/components/new-transaction/new-transaction.component";
 
 @Component({
   selector: "transaction-detail-grid",
@@ -18,6 +19,7 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
   @ViewChild("transacrionDetail")
   public modalRef: MDBModalRef;
   public transacrionDetail: FinanceGridComponent;
+  public call_update_transaction_pending_subscribe: Subscription;
   public call_update_transaction_subscribe: Subscription;
   public call_delete_transaction_subscribe: Subscription;
   public refresh_resume_transaction_subscribe: Subscription;
@@ -33,8 +35,27 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
     private modalService: MDBModalService,
     private eventService: EventService
   ) {
+    this.subscribe();
+    this.columnDefs = this.configuration.getColumnsDefs();
+  }
+
+  ngOnInit() {
+    this.getOptions();
+    this.refreshTransactionDetail();
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe();
+  }
+
+  subscribe = () => {
     this.call_update_transaction_subscribe = this.eventService.subscribe(
       "CALL_UPDATE_TRANSACTION",
+      this.modalUpdateTransaction
+    );
+
+    this.call_update_transaction_pending_subscribe = this.eventService.subscribe(
+      "CALL_UPDATE_PENDING_TRANSACTION",
       this.modalMessageConfirmedPayment
     );
 
@@ -47,19 +68,15 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
       "REFRESH_RESUME_TRANSACTION",
       this.refreshTransactionDetail
     );
+  };
 
-    this.columnDefs = this.configuration.getColumnsDefs();
-  }
-
-  ngOnInit() {
-    this.getOptions();
-    this.refreshTransactionDetail();
-  }
-
-  ngOnDestroy() {
-    this.eventService.unsubscribe(this.call_update_transaction_subscribe);
+  unsubscribe() {
+    this.eventService.unsubscribe(
+      this.call_update_transaction_pending_subscribe
+    );
     this.eventService.unsubscribe(this.call_delete_transaction_subscribe);
     this.eventService.unsubscribe(this.refresh_resume_transaction_subscribe);
+    this.eventService.unsubscribe(this.call_update_transaction_subscribe);
   }
 
   public getOptions() {
@@ -155,11 +172,27 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
     );
   };
 
+  public modalUpdateTransaction = params => {
+    console.log("modalUpdateTransaction", params);
+    this.modalRef = this.modalService.show(NewTransactionComponent, {
+      backdrop: true,
+      keyboard: true,
+      focus: true,
+      show: false,
+      ignoreBackdropClick: false,
+      class: "modal-full-height modal-right",
+      containerClass: "right",
+      animated: true,
+      data: {}
+    });
+  };
+
   public modalMessageConfirmedPayment = params => {
     this.modalRef = this.modalService.show(
       ModalMessageConfirmedPaymentComponent,
       {
         backdrop: true,
+        keyboard: true,
         show: false,
         class: "modal-md",
         animated: true,

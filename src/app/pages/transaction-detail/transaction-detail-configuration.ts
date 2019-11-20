@@ -107,7 +107,7 @@ export class TransactionDetailConfiguration {
               return "";
             },
             onCellClicked: event => {
-              this.eventService.dispatch("CALL_UPDATE_TRANSACTION", {
+              this.eventService.dispatch("CALL_UPDATE_PENDING_TRANSACTION", {
                 data: event.data,
                 type: "CONFIRMED_PAYMENT"
               });
@@ -122,6 +122,9 @@ export class TransactionDetailConfiguration {
             width: 60,
             cellRenderer: param => {
               return '<i class="icon fas fa-pencil-alt"></i>';
+            },
+            onCellClicked: event => {
+              this.eventService.dispatch("CALL_UPDATE_TRANSACTION", event.data);
             }
           },
           {
