@@ -20,7 +20,10 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
   implements OnInit {
   public showCategories: boolean = false;
   public categories: Array<Category> = [];
+  public action: string = "NEW";
   public subCategorySelected;
+  public data: any;
+  public id;
 
   constructor(
     private modalRef: MDBModalRef,
@@ -37,7 +40,21 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
   ngOnInit() {
     this.listAllCategory();
     this.buildResourceForm();
+
+    if (this.data) this.setValueForm();
   }
+
+  setValueForm = () => {
+    var newData = {
+      ...this.data,
+      dt_transaction: this.utilService.formatDateSqlToNgb(
+        this.data.dt_transaction
+      )
+    };
+
+    this.subCategorySelected = this.data.category_group_sub;
+    this.resourceForm.patchValue(newData);
+  };
 
   buildResourceForm(): void {
     const dateInitial = this.dateInitial();
@@ -62,8 +79,12 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
     transaction.category_group_id = this.subCategorySelected.category_group_id;
     transaction.category_group_sub_id = this.subCategorySelected.id;
 
-    this.insertTransaction(transaction);
+    this.action == "NEW"
+      ? this.insertTransaction(transaction)
+      : this.updateTransaction(transaction);
+
     this.resetForm();
+    this.modalRef.hide();
   }
 
   public resetForm() {
@@ -83,6 +104,38 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
       month: parseInt(date[1]),
       day: parseInt(date[2])
     };
+  }
+
+  public updateTransaction(transaction: TransactionModel) {
+    transaction.id = this.id;
+    this.transactionService
+      .updateTransaction(transaction)
+      .then(resp => {
+        if (resp.success) {
+          this.toastr.success(
+            "Sua operação foi salva com successo.",
+            "Parabéns",
+            {
+              timeOut: 5000,
+              positionClass: "toast-bottom-left"
+            }
+          );
+
+          this.eventService.dispatch("REFRESH_TRANSACTION_DETAIL_CARD", true);
+          this.eventService.dispatch("REFRESH_RESUME_TRANSACTION", {
+            success: true
+          });
+        }
+      })
+      .catch(err => {
+        if (err.status == 400)
+          this.toastr.error(err.error.errormessage, "Atenção", {
+            timeOut: 5000,
+            positionClass: "toast-bottom-left"
+          });
+
+        console.error(err);
+      });
   }
 
   public insertTransaction(transaction: TransactionModel) {

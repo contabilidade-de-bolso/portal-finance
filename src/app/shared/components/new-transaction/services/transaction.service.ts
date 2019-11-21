@@ -17,4 +17,12 @@ export class TransactionService {
       transaction
     );
   }
+
+  public updateTransaction(transaction: TransactionModel): Promise<any> {
+    return this.httpService.callMethod(
+      TransactionService.TRANSACTION_API,
+      "updateTransaction",
+      transaction
+    );
+  }
 }

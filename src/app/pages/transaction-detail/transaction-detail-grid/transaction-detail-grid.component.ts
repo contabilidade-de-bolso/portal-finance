@@ -167,13 +167,10 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
       DELETE_TRANSACTION: this.deleteTransaction
     };
 
-    return (
-      list[method](params.id) || alert("Não foi possível atualizar os dados.")
-    );
+    list[method](params.id) || alert("Não foi possível atualizar os dados.");
   };
 
-  public modalUpdateTransaction = params => {
-    console.log("modalUpdateTransaction", params);
+  public modalUpdateTransaction = data => {
     this.modalRef = this.modalService.show(NewTransactionComponent, {
       backdrop: true,
       keyboard: true,
@@ -183,7 +180,7 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
       class: "modal-full-height modal-right",
       containerClass: "right",
       animated: true,
-      data: {}
+      data: { data: data, id: data.id, action: "UPDATE" }
     });
   };
 
