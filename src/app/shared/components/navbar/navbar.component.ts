@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit {
       keyboard: true,
       focus: true,
       show: false,
-      ignoreBackdropClick: false,
       class: "modal-full-height modal-right",
       containerClass: "right",
       animated: true

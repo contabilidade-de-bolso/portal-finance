@@ -37,6 +37,6 @@ export class ModalMessageConfirmedPaymentComponent implements OnInit {
       id: this.data.id,
       type: this.type
     });
-    this.modalRef.hide();
+    this.modalRef.hide(1);
   };
 }

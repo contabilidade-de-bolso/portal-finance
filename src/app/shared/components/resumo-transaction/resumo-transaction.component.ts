@@ -162,7 +162,7 @@ export class ResumoTransactionComponent implements OnInit {
 
     var footer = new FooterGridTransaction(
       0,
-      "Total",
+      "Balanço",
       0,
       vl_transaction_total,
       "",

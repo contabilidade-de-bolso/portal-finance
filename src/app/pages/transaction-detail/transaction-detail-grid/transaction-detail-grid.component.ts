@@ -176,7 +176,6 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
       keyboard: true,
       focus: true,
       show: false,
-      ignoreBackdropClick: false,
       class: "modal-full-height modal-right",
       containerClass: "right",
       animated: true,
@@ -190,6 +189,7 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
       {
         backdrop: true,
         keyboard: true,
+        focus: true,
         show: false,
         class: "modal-md",
         animated: true,

@@ -84,7 +84,7 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
       : this.updateTransaction(transaction);
 
     this.resetForm();
-    this.modalRef.hide();
+    this.modalRef.hide(1);
   }
 
   public resetForm() {

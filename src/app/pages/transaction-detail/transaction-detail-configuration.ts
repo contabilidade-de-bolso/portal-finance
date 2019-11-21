@@ -88,6 +88,11 @@ export class TransactionDetailConfiguration {
               }
             },
             cellRenderer: params => {
+              params.value =
+                params.data.cd_transaction_type == "ENT"
+                  ? params.value
+                  : params.value * -1;
+
               return (
                 '<span class="rag-element"> R$ ' +
                 this.decimalPipe.transform(params.value, "1.2-2") +

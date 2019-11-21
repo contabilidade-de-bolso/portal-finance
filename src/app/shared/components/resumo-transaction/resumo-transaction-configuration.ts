@@ -162,7 +162,7 @@ export class ResumoTransactionConfiguration {
               var classElemnt =
                 parseFloat(params.data.vl_transaction) >= 0
                   ? "text-success bold"
-                  : "text-danger";
+                  : "text-danger bold";
               return `<span class="rag-element ${classElemnt}"> R$ 
                 ${this.decimalPipe.transform(params.value, "1.2-2")}
                 </span>`;
