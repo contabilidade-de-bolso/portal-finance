@@ -13,25 +13,17 @@ export class TransactionDetailCardComponent implements OnInit {
   public refresh_transaction_detail_card_subscribe: Subscription;
 
   public icon: any = {
-    PENDING: "fas fa-check",
-    NOT_PENDING: "fas fa-check-double",
-    BALANCE: "fas fa-balance-scale"
+    TO_RECEIVE: "fas fa-hand-holding-usd",
+    RECEIVED: "fas fa-heart",
+    PAYABLE: "fas fa-money-check-alt",
+    PAID: "fas fa-check-double"
   };
   public title: any = {
-    ENT: {
-      PENDING: "Despesas Pendentes",
-      NOT_PENDING: "Despesas Pagas",
-      BALANCE: "Total"
-    },
-    SAI: {
-      PENDING: "Receitas Pendentes",
-      NOT_PENDING: "Receitas Recebidas",
-      BALANCE: "Total"
-    },
     AMB: {
-      PENDING: "Pendentes",
-      NOT_PENDING: "Pagas",
-      BALANCE: "Recebidas"
+      TO_RECEIVE: "A Receber",
+      RECEIVED: "Recebido",
+      PAYABLE: "A Pagar",
+      PAID: "Pago"
     }
   };
   public cards = [];
@@ -66,12 +58,14 @@ export class TransactionDetailCardComponent implements OnInit {
     this.service
       .getDetailCard(this.cd_transaction_type)
       .then(resp => {
-        this.cards = resp.result.map(card => {
-          card.title = this.title[card.cd_transaction_type][card.type];
-          card.icon = this.icon[card.type];
+        this.cards = resp.result
+          .map(card => {
+            card.title = this.title[card.cd_transaction_type][card.name];
+            card.icon = this.icon[card.name];
 
-          return card;
-        });
+            return card;
+          })
+          .sort((a, b) => b.vl_transaction - a.vl_transaction);
       })
       .catch(err => {
         console.log("err", err);
