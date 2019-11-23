@@ -221,6 +221,7 @@ export class ResumoTransactionConfiguration {
         params.api.sizeColumnsToFit();
       },
       onCellClicked: (event): void => {
+        if (event.rowPinned) return;
         this.eventService.dispatch(
           "REFRESH_RESUME_TRANSACTION_CATEGORY",
           event.data
