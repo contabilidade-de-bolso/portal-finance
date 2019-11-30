@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MDBModalRef } from "angular-bootstrap-md";
+import { MDBModalRef, MDBModalService } from "angular-bootstrap-md";
 import { CategoryService } from "../../services/category.service";
 import { Category } from "../../models/category.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -27,6 +27,7 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
 
   constructor(
     private modalRef: MDBModalRef,
+    private modalService: MDBModalService,
     private eventService: EventService,
     private fb: FormBuilder,
     private categoryService: CategoryService,
@@ -42,6 +43,10 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
     this.buildResourceForm();
 
     if (this.data) this.setValueForm();
+  }
+
+  ngOnDestroy() {
+    this.modalRef = null;
   }
 
   setValueForm = () => {
@@ -84,7 +89,7 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
       : this.updateTransaction(transaction);
 
     this.resetForm();
-    this.modalRef.hide(1);
+    this.modalService._hideModal(0);
   }
 
   public resetForm() {
@@ -218,4 +223,8 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
       this.categories = [category];
     });
   }
+
+  closedModal = () => {
+    this.modalService.hide(1);
+  };
 }

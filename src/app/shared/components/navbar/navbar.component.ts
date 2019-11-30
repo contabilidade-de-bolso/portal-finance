@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { MDBModalService, MDBModalRef } from "angular-bootstrap-md";
 import { NewTransactionComponent } from "../new-transaction/new-transaction.component";
 import { SessionStorage } from "../../services/session-storage.service";
@@ -8,7 +8,7 @@ import { SessionStorage } from "../../services/session-storage.service";
   templateUrl: "./navbar.component.html",
   styleUrls: ["./navbar.component.css"]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   modalRef: MDBModalRef;
   @Input() list_nav_bar: ListNavBar;
 
@@ -18,6 +18,10 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  ngOnDestroy() {
+    this.modalRef = null;
+  }
 
   logout() {
     this.sStorage.removeUserAuth();

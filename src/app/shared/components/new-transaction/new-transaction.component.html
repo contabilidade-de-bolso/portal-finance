@@ -1,14 +1,28 @@
-<div class="modal-content" *ngIf="!showCategories; else categoriesTemplate">
+<div
+  mdbModal
+  class="modal-content"
+  *ngIf="!showCategories; else categoriesTemplate"
+>
   <div class="modal-header">
     <button
       type="button"
       class="close pull-right"
       aria-label="Close"
-      (click)="modalRef.hide(1)"
+      (click)="closedModal()"
     >
       <span aria-hidden="true">×</span>
     </button>
-    <h4 class="modal-title w-100" id="myModalLabel">Adicionar transação</h4>
+    <h4
+      [ngClass]="{
+        'text-primary':
+          resourceForm.controls.cd_transaction_type.value == 'ENT',
+        'text-danger': resourceForm.controls.cd_transaction_type.value == 'SAI'
+      }"
+      class="modal-title w-100"
+      id="myModalLabel"
+    >
+      Adicionar transação
+    </h4>
   </div>
 
   <form [formGroup]="resourceForm" (submit)="submitForm()">
@@ -25,7 +39,7 @@
                   type="radio"
                   name="cd_transaction_type"
                   value="ENT"
-                  class="form-radio"
+                  class="form-radio bg-primary"
                   formControlName="cd_transaction_type"
                   checked
                 /><label
@@ -40,7 +54,7 @@
                   name="cd_transaction_type"
                   value="SAI"
                   formControlName="cd_transaction_type"
-                  class="form-radio"
+                  class="form-radio bg-danger"
                   checked
                 /><label
                   id="radio_cd_transaction_type"
@@ -102,7 +116,16 @@
         </div>
 
         <div class="row label-float">
-          <button class="btn btn-primary" (click)="showOptionsCategories()">
+          <button
+            class="btn "
+            (click)="showOptionsCategories()"
+            [ngClass]="{
+              'btn-primary':
+                resourceForm.controls.cd_transaction_type.value == 'ENT',
+              'btn-danger':
+                resourceForm.controls.cd_transaction_type.value == 'SAI'
+            }"
+          >
             <span class="float-left" *ngIf="!subCategorySelected"
               >Categoria</span
             >
@@ -126,7 +149,12 @@
         "
         type="submit"
         mdbBtn
-        class="btn btn-primary relative waves-light"
+        class="btn btn-default relative waves-light"
+        [ngClass]="{
+          'btn-primary':
+            resourceForm.controls.cd_transaction_type.value == 'ENT',
+          'btn-danger': resourceForm.controls.cd_transaction_type.value == 'SAI'
+        }"
         mdbWavesEffect
       >
         Salvar
