@@ -16,7 +16,13 @@ export class NavbarComponent implements OnInit {
     private sStorage: SessionStorage
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    window.addEventListener("storage", function(e) {
+      if (e["key"] == "CLIENT_AUTH" && !e["newValue"]) {
+        window.location.replace("/login");
+      }
+    });
+  }
 
   logout() {
     this.sStorage.removeUserAuth();

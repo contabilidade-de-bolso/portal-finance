@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private service: UserService,
-    private sessionStorage: SessionStorage,
+    private localStorage: SessionStorage,
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,

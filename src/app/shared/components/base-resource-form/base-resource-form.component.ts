@@ -26,7 +26,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
     protected injector,
     public resource: T,
     protected service: BaseResourceService<T>,
-    protected sessionStorage: SessionStorage
+    protected localStorage: SessionStorage
   ) {
     this.toastr = this.injector.get(ToastrService);
     this.route = this.injector.get(ActivatedRoute);
@@ -35,7 +35,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
   }
 
   ngOnInit() {
-    this.user = this.sessionStorage.getUserAuth();
+    this.user = this.localStorage.getUserAuth();
 
     this.setCurrentAction();
     this.buildResourceForm();
@@ -166,12 +166,12 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
   }
 
   protected authenticated(): boolean {
-    let user = this.sessionStorage.getUserAuth();
+    let user = this.localStorage.getUserAuth();
 
     if (user != null) this.user = user;
     else if (!this.user) {
       this.router.navigate(["/"]);
-      this.sessionStorage.removeUserAuth();
+      this.localStorage.removeUserAuth();
     }
 
     return this.user !== undefined && this.user !== null;

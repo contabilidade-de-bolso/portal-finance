@@ -8,14 +8,14 @@ export class SessionStorage {
   constructor() {}
 
   setUser(user): void {
-    sessionStorage.setItem("CLIENT_AUTH", JSON.stringify(user));
+    localStorage.setItem("CLIENT_AUTH", JSON.stringify(user));
   }
 
   getUserAuth(): User {
-    return JSON.parse(sessionStorage.getItem("CLIENT_AUTH"));
+    return JSON.parse(localStorage.getItem("CLIENT_AUTH"));
   }
 
   removeUserAuth() {
-    sessionStorage.removeItem("CLIENT_AUTH");
+    localStorage.removeItem("CLIENT_AUTH");
   }
 }

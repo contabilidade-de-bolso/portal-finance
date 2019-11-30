@@ -14,7 +14,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel>
   constructor(
     protected URL_COMPLEMENT: string,
     protected injector: Injector,
-    protected sessionStorage: SessionStorage
+    protected localStorage: SessionStorage
   ) {
     this.http = injector.get(HttpClient);
     this.router = injector.get(Router);
@@ -27,7 +27,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel>
 
   ngOnInit() {
     this.headers = new HttpHeaders({
-      Authorization: "Bearer " + this.sessionStorage.getUserAuth().token
+      Authorization: "Bearer " + this.localStorage.getUserAuth().token
     });
   }
 
@@ -99,9 +99,9 @@ export abstract class BaseResourceService<T extends BaseResourceModel>
   }
 
   canActivate(): boolean {
-    var user = this.sessionStorage.getUserAuth();
+    var user = this.localStorage.getUserAuth();
     if (!user) {
-      sessionStorage.clear();
+      localStorage.clear();
       this.router.navigate(["/"]);
       return false;
     }

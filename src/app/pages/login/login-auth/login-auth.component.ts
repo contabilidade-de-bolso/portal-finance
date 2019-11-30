@@ -16,9 +16,9 @@ export class LoginAuthComponent extends BaseResourceFormComponent<User> {
   constructor(
     protected injector: Injector,
     protected service: AuthenticateService,
-    public sessionStorage: SessionStorage
+    public localStorage: SessionStorage
   ) {
-    super(injector, new User(), service, sessionStorage);
+    super(injector, new User(), service, localStorage);
   }
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class LoginAuthComponent extends BaseResourceFormComponent<User> {
       this.logoutMessage = reasonLogout.message;
     }
 
-    this.sessionStorage.removeUserAuth();
+    this.localStorage.removeUserAuth();
 
     this.setCurrentAction();
     this.buildResourceForm();
@@ -71,7 +71,7 @@ export class LoginAuthComponent extends BaseResourceFormComponent<User> {
     let userAuth = {};
     userAuth = result.user;
     userAuth["token"] = result.token;
-    this.sessionStorage.setUser(userAuth);
+    this.localStorage.setUser(userAuth);
     this.router.navigate(["/home"]);
   }
 }

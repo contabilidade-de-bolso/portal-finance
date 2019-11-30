@@ -9,10 +9,7 @@ import { SessionStorage } from "./session-storage.service";
   providedIn: "root"
 })
 export class HttpService {
-  constructor(
-    private http: HttpClient,
-    private sessionStorage: SessionStorage
-  ) {}
+  constructor(private http: HttpClient, private localStorage: SessionStorage) {}
 
   public callMethod(
     url: string,
@@ -38,7 +35,7 @@ export class HttpService {
     url = `${URL_API_BASE.LOCAL}/${url}/${method}`;
     if (not_auth) {
       params = {
-        Authorization: `Bearer ${this.sessionStorage.getUserAuth().token}`
+        Authorization: `Bearer ${this.localStorage.getUserAuth().token}`
       };
     }
 
