@@ -121,7 +121,7 @@ export class TransactionDetailConfiguration {
           {
             headerName: "",
             field: "pending",
-            cellClass: ["text-right"],
+            cellClass: ["text-right", "btn", "bg-primary"],
             headerClass: "text-center",
             sortable: false,
             width: 60,
@@ -135,7 +135,7 @@ export class TransactionDetailConfiguration {
           {
             headerName: "",
             field: "pending",
-            cellClass: ["text-right"],
+            cellClass: ["text-right", "btn", "bg-danger"],
             headerClass: "text-center",
             sortable: false,
             width: 60,
