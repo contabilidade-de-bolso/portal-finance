@@ -27,6 +27,7 @@ export class ResumoTransactionComponent implements OnInit {
   public pinnedTotalRow: any;
 
   public properties;
+  public isEmptyChart: Boolean = true;
 
   @ViewChild("chartTarget") public chartTarget: ElementRef;
   @ViewChild("resumoTransactionGrid")
@@ -150,6 +151,7 @@ export class ResumoTransactionComponent implements OnInit {
       y: parseFloat(item[properties.y])
     }));
     const series = { id, data };
+    if (chartData.length) this.isEmptyChart = true;
     if (this.chart.series.length > 0) this.chart.series[0].remove();
     this.chart.addSeries(series);
   }

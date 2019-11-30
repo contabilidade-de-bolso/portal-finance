@@ -13,6 +13,7 @@ export class CardDetailDashboardComponent implements OnInit {
   public options: Highcharts.Options;
   public chart: any;
   public highcharts = Highcharts;
+  public isEmptyChart: boolean = true;
 
   @Input() detail;
   @ViewChild("chartCardDetail") public chartCardDetail: ElementRef;
@@ -44,6 +45,7 @@ export class CardDetailDashboardComponent implements OnInit {
       data: chartData
     };
 
+    if (chartData.length) this.isEmptyChart = false;
     if (this.chart.series.length > 0) this.chart.series[0].remove();
     this.chart.addSeries(series);
   };

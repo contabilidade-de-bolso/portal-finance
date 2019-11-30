@@ -11,7 +11,12 @@
         <p class="card-text">R$ {{ detail.value | number: "1.2-2" }}</p>
       </div>
       <div class="col-6">
-        <div id="container{{ detail.id }}"></div>
+        <div *ngIf="!isEmptyChart" id="container{{ detail.id }}"></div>
+        <div *ngIf="isEmptyChart">
+          <p style="font-size: 20px;position: absolute;top: 40px;">
+            Não há dados.
+          </p>
+        </div>
       </div>
     </div>
   </div>

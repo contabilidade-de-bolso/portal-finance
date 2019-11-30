@@ -1,10 +1,16 @@
 <div class="resumo-transaction">
   <div class="resumo-chart col-md-4 mt-4">
     <div
+      *ngIf="!isEmptyChart"
       #chartTarget
       class="chart"
       [ngStyle]="{ 'width.%': 100, 'height.px': 360, display: 'block' }"
     ></div>
+    <div *ngIf="isEmptyChart" class="message">
+      <p style="font-size: 20px;position: absolute;top: 160px;left: 160px;">
+        Não há dados.
+      </p>
+    </div>
   </div>
   <div class="resumo-grid col-md-8 mt-4">
     <finance-grid
