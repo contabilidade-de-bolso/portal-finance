@@ -1,27 +1,22 @@
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
-import { MDBModalService, MDBModalRef } from "angular-bootstrap-md";
 import { NewTransactionComponent } from "../new-transaction/new-transaction.component";
 import { SessionStorage } from "../../services/session-storage.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
   styleUrls: ["./navbar.component.css"]
 })
-export class NavbarComponent implements OnInit, OnDestroy {
-  modalRef: MDBModalRef;
+export class NavbarComponent implements OnInit {
   @Input() list_nav_bar: ListNavBar;
 
   constructor(
-    private modalService: MDBModalService,
+    private modalService: NgbModal,
     private sStorage: SessionStorage
   ) {}
 
   ngOnInit() {}
-
-  ngOnDestroy() {
-    this.modalRef = null;
-  }
 
   logout() {
     this.sStorage.removeUserAuth();
@@ -29,15 +24,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   openModalNewTransaction() {
-    this.modalRef = this.modalService.show(NewTransactionComponent, {
-      backdrop: true,
-      keyboard: true,
-      focus: true,
-      show: false,
-      class: "modal-full-height modal-right",
-      containerClass: "right",
-      animated: true
+    const modalRef = this.modalService.open(NewTransactionComponent, {
+      backdrop: "static",
+      keyboard: true
     });
+
+    modalRef.componentInstance.params = { action: "NEW" };
   }
 }
 

@@ -188,7 +188,15 @@
       <div class="row">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="bg-primary input-group-text">
+            <span
+              class="input-group-text"
+              [ngClass]="{
+                'text-primary':
+                  resourceForm.controls.cd_transaction_type.value == 'ENT',
+                'text-danger':
+                  resourceForm.controls.cd_transaction_type.value == 'SAI'
+              }"
+            >
               <i class="fas fa-search"></i>
             </span>
           </div>
@@ -204,7 +212,7 @@
         </div>
       </div>
 
-      <div class="row" style="overflow-y: scroll;height: 560px;">
+      <div class="row" style="overflow-y: scroll;height: 500px;">
         <div class="list-group w-100 mb-2" *ngFor="let category of categories">
           <h5 class="pl-2" style="font-size:medium">
             {{ category.nm_category_group }}

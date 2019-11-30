@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { MDBModalRef, MDBModalService } from "angular-bootstrap-md";
+import { Component, OnInit, Input } from "@angular/core";
 import { CategoryService } from "../../services/category.service";
 import { Category } from "../../models/category.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -10,6 +9,7 @@ import { UtilService } from "../../utils/util.service";
 import { TransactionService } from "./services/transaction.service";
 import { ToastrService } from "ngx-toastr";
 import { EventService } from "src/app/core/services/event.service";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-new-transaction",
@@ -18,16 +18,13 @@ import { EventService } from "src/app/core/services/event.service";
 })
 export class NewTransactionComponent extends BaseResourceSimpleFormComponent
   implements OnInit {
+  @Input() params: any;
   public showCategories: boolean = false;
   public categories: Array<Category> = [];
-  public action: string = "NEW";
   public subCategorySelected;
-  public data: any;
-  public id;
 
   constructor(
-    private modalRef: MDBModalRef,
-    private modalService: MDBModalService,
+    public modalRef: NgbActiveModal,
     private eventService: EventService,
     private fb: FormBuilder,
     private categoryService: CategoryService,
@@ -42,22 +39,18 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
     this.listAllCategory();
     this.buildResourceForm();
 
-    if (this.data) this.setValueForm();
-  }
-
-  ngOnDestroy() {
-    this.modalRef = null;
+    if (this.params.data) this.setValueForm();
   }
 
   setValueForm = () => {
     var newData = {
-      ...this.data,
+      ...this.params.data,
       dt_transaction: this.utilService.formatDateSqlToNgb(
-        this.data.dt_transaction
+        this.params.data.dt_transaction
       )
     };
 
-    this.subCategorySelected = this.data.category_group_sub;
+    this.subCategorySelected = this.params.data.category_group_sub;
     this.resourceForm.patchValue(newData);
   };
 
@@ -84,12 +77,12 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
     transaction.category_group_id = this.subCategorySelected.category_group_id;
     transaction.category_group_sub_id = this.subCategorySelected.id;
 
-    this.action == "NEW"
+    this.params.action == "NEW"
       ? this.insertTransaction(transaction)
       : this.updateTransaction(transaction);
 
     this.resetForm();
-    this.modalService._hideModal(0);
+    this.modalRef.close();
   }
 
   public resetForm() {
@@ -112,7 +105,7 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
   }
 
   public updateTransaction(transaction: TransactionModel) {
-    transaction.id = this.id;
+    transaction.id = this.params.id;
     this.transactionService
       .updateTransaction(transaction)
       .then(resp => {
@@ -225,6 +218,6 @@ export class NewTransactionComponent extends BaseResourceSimpleFormComponent
   }
 
   closedModal = () => {
-    this.modalService.hide(1);
+    this.modalRef.close();
   };
 }

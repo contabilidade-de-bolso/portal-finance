@@ -22,7 +22,6 @@
     "@ng-bootstrap/ng-bootstrap": "^4.2.2",
     "ag-grid-angular": "^21.2.2",
     "ag-grid-community": "^21.2.2",
-    "angular-bootstrap-md": "^7.5.4",
     "bootstrap": "^4.3.1",
     "core-js": "^2.6.10",
     "highcharts": "^7.2.1",

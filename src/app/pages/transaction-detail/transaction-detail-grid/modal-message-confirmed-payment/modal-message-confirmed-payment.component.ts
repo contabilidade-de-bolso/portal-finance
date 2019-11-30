@@ -1,7 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { MDBModalRef } from "angular-bootstrap-md";
+import { Component, OnInit, Input } from "@angular/core";
 import { DecimalPipe } from "@angular/common";
-import { Subject } from "rxjs";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-modal-message-confirmed-payment",
@@ -10,33 +9,31 @@ import { Subject } from "rxjs";
 })
 export class ModalMessageConfirmedPaymentComponent implements OnInit {
   private decimalPipe: DecimalPipe = new DecimalPipe("pt-BR");
-  public action: any = new Subject();
 
-  public data: any;
-  public type: string;
+  @Input() public params: any;
+  @Input() public type: string;
 
-  constructor(private modalRef: MDBModalRef) {}
+  constructor(private modalRef: NgbActiveModal) {}
 
   ngOnInit() {}
 
   public getMessageModal = () => {
     const list = {
       CONFIRMED_PAYMENT: `Confirme o pagamento de R$ ${this.decimalPipe.transform(
-        this.data.vl_transaction,
+        this.params.data.vl_transaction,
         "1.2-2"
-      )} da operação ${this.data.nm_transaction} ?`,
-      DELETE_TRANSACTION: `Confirme a exclusão da operação ${this.data.nm_transaction} ?`
+      )} da operação ${this.params.data.nm_transaction} ?`,
+      DELETE_TRANSACTION: `Confirme a exclusão da operação ${this.params.data.nm_transaction} ?`
     };
 
-    return list[this.type] || "Mensagem não encontrada.";
+    return list[this.params.type] || "Mensagem não encontrada.";
   };
 
   public submitAction = () => {
-    this.action.next({
+    this.modalRef.close({
       doAction: true,
-      id: this.data.id,
-      type: this.type
+      id: this.params.data.id,
+      type: this.params.type
     });
-    this.modalRef.hide();
   };
 }

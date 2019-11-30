@@ -3,11 +3,11 @@ import { FinanceGridComponent } from "src/app/shared/components/finance-grid/fin
 import { TransactionDetailConfiguration } from "../transaction-detail-configuration";
 import { ToastrService } from "ngx-toastr";
 import { TransactionDetailService } from "../transaction-detail.service";
-import { MDBModalService, MDBModalRef } from "angular-bootstrap-md";
 import { EventService } from "src/app/core/services/event.service";
 import { Subscription } from "rxjs";
 import { ModalMessageConfirmedPaymentComponent } from "./modal-message-confirmed-payment/modal-message-confirmed-payment.component";
 import { NewTransactionComponent } from "src/app/shared/components/new-transaction/new-transaction.component";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "transaction-detail-grid",
@@ -17,7 +17,6 @@ import { NewTransactionComponent } from "src/app/shared/components/new-transacti
 })
 export class TransactionDetailGridComponent implements OnInit, OnDestroy {
   @ViewChild("transacrionDetail")
-  public modalRef: MDBModalRef;
   public transacrionDetail: FinanceGridComponent;
   public call_update_transaction_pending_subscribe: Subscription;
   public call_update_transaction_subscribe: Subscription;
@@ -32,7 +31,7 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
     private service: TransactionDetailService,
     private configuration: TransactionDetailConfiguration,
     private toastr: ToastrService,
-    private modalService: MDBModalService,
+    private modalService: NgbModal,
     private eventService: EventService
   ) {
     this.subscribe();
@@ -171,33 +170,32 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
   };
 
   public modalUpdateTransaction = data => {
-    this.modalRef = this.modalService.show(NewTransactionComponent, {
-      backdrop: true,
-      keyboard: true,
-      focus: true,
-      show: false,
-      class: "modal-full-height modal-right",
-      containerClass: "right",
-      animated: true,
-      data: { data: data, id: data.id, action: "UPDATE" }
+    const modalRef = this.modalService.open(NewTransactionComponent, {
+      backdrop: "static",
+      keyboard: true
     });
+
+    modalRef.componentInstance.params = {
+      data: data,
+      id: data.id,
+      action: "UPDATE"
+    };
   };
 
   public modalMessageConfirmedPayment = params => {
-    this.modalRef = this.modalService.show(
+    const modalRef = this.modalService.open(
       ModalMessageConfirmedPaymentComponent,
       {
         backdrop: true,
-        keyboard: true,
-        focus: true,
-        show: false,
-        class: "modal-md",
-        animated: true,
-        data: { data: params.data, type: params.type }
+        keyboard: true
       }
     );
+    modalRef.componentInstance.params = {
+      data: params.data,
+      type: params.type
+    };
 
-    this.modalRef.content.action.subscribe(async (result: any) => {
+    modalRef.result.then(async (result: any) => {
       const { doAction, id, type } = result;
       if (doAction) this.getMethodByName(type, { id });
     });
