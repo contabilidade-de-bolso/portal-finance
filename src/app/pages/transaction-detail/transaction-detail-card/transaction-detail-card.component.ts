@@ -47,13 +47,6 @@ export class TransactionDetailCardComponent implements OnInit {
     );
   }
 
-  ngOnDestroy(): void {
-    this.eventService.unsubscribe(this.refresh_resume_transaction_subscribe);
-    this.eventService.unsubscribe(
-      this.refresh_transaction_detail_card_subscribe
-    );
-  }
-
   getDetailCard = () => {
     this.service
       .getDetailCard(this.cd_transaction_type)

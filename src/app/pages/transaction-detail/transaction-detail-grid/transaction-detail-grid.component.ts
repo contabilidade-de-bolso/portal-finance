@@ -39,6 +39,7 @@ export class TransactionDetailGridComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.modalService.dismissAll();
     this.getOptions();
     this.refreshTransactionDetail();
   }
