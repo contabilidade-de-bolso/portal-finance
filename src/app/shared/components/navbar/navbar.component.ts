@@ -9,7 +9,10 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit {
-  @Input() list_nav_bar: ListNavBar;
+  public initName = "";
+  public fullName = "";
+
+  @Input() public list_nav_bar: ListNavBar;
 
   constructor(
     private modalService: NgbModal,
@@ -17,6 +20,10 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    var user = JSON.parse(localStorage.CLIENT_AUTH);
+    this.initName = user.name.substring(0, 1).toLocaleUpperCase();
+    this.fullName = user.name;
+
     window.addEventListener("storage", function(e) {
       if (e["key"] == "CLIENT_AUTH" && !e["newValue"]) {
         window.location.replace("/login");

@@ -34,6 +34,7 @@
   <div class="pull-right text-left">
     <div class="btn-group">
       <button
+        [ngbTooltip]="fullName"
         type="button"
         class="btn btn-dange dropdown-toggle menu-conf"
         data-toggle="dropdown"
@@ -41,7 +42,7 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-        <span>DG</span>
+        <span>{{ initName }}</span>
       </button>
       <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right">
         <button class="dropdown-item" type="button" (click)="logout()">
