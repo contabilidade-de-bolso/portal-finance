@@ -27,47 +27,7 @@
 
   <form [formGroup]="resourceForm" (submit)="submitForm()">
     <div class="modal-body">
-      <div class="tp-transaction">
-        <div class="row">
-          <div class="col">
-            <div class="text-center">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label">Essa transação é uma: </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  type="radio"
-                  name="cd_transaction_type"
-                  value="ENT"
-                  class="form-radio bg-primary"
-                  formControlName="cd_transaction_type"
-                  checked
-                /><label
-                  id="radio_cd_transaction_type"
-                  for="radio_cd_transaction_type"
-                  >Receita</label
-                >
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  type="radio"
-                  name="cd_transaction_type"
-                  value="SAI"
-                  formControlName="cd_transaction_type"
-                  class="form-radio bg-danger"
-                  checked
-                /><label
-                  id="radio_cd_transaction_type"
-                  for="radio_cd_transaction_type"
-                  >Despesa</label
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container content-new-transaction mt-5">
+      <div class="container content-new-transaction mt-1">
         <div class="row label-float">
           <input
             formControlName="dt_transaction"
@@ -113,6 +73,46 @@
             placeholder=" "
           />
           <label class="form-check-label">Descrição</label>
+        </div>
+
+        <div class="tp-transaction">
+          <div class="row">
+            <div class="col">
+              <div class="text-center">
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">Essa transação é uma: </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="cd_transaction_type"
+                    value="ENT"
+                    class="form-radio bg-primary"
+                    formControlName="cd_transaction_type"
+                    checked
+                  /><label
+                    id="radio_cd_transaction_type"
+                    for="radio_cd_transaction_type"
+                    >Receita</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="cd_transaction_type"
+                    value="SAI"
+                    formControlName="cd_transaction_type"
+                    class="form-radio bg-danger"
+                    checked
+                  /><label
+                    id="radio_cd_transaction_type"
+                    for="radio_cd_transaction_type"
+                    >Despesa</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="row label-float">
