@@ -30,10 +30,7 @@ export class SessionUserService implements CanActivate {
 
     this.sStorage.removeUserAuth();
     window.location.replace("/login?logout=" + JSON.stringify(resp));
-
-    setTimeout(() => {
-      return false;
-    }, 300);
+    return false;
   }
 
   public checkSession(): Promise<any> {

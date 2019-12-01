@@ -10,14 +10,12 @@ import { ServerErrorMessagesComponent } from "./components/server-error-messages
 import { RouterModule } from "@angular/router";
 import { AgGridModule } from "ag-grid-angular";
 
-
 import {
   NgbModule,
   NgbDatepickerI18n,
   NgbDateParserFormatter
 } from "@ng-bootstrap/ng-bootstrap";
 import { ListActionLeftComponent } from "./components/list-action-left/list-action-left.component";
-import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { NewTransactionComponent } from "./components/new-transaction/new-transaction.component";
 
 import { HighchartsChartComponent } from "highcharts-angular";
@@ -48,7 +46,6 @@ registerLocaleData(localePtBr);
     ReactiveFormsModule,
     RouterModule,
     NgbModule,
-    MDBBootstrapModule.forRoot(),
     NgxCurrencyModule,
     AgGridModule.withComponents([MessageSimpleComponent])
   ],

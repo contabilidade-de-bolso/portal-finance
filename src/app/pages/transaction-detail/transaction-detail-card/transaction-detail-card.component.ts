@@ -65,7 +65,7 @@ export class TransactionDetailCardComponent implements OnInit {
 
             return card;
           })
-          .sort((a, b) => b.vl_transaction - a.vl_transaction);
+          .sort((a, b) => a.index - b.index);
       })
       .catch(err => {
         console.log("err", err);
