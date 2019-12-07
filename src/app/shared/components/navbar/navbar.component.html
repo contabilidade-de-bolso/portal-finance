@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav id="nav-bar-component" class="navbar navbar-expand-lg">
   <a class="navbar-brand" routerLink="/home">
     <span class="logo"><i class="far fa-money-bill-alt"></i></span>
   </a>
@@ -22,10 +22,40 @@
       </li>
     </ul>
   </div>
+  <div class="group-period" *ngIf="showPeriod">
+    <div
+      class="btn btn-light"
+      style="cursor:pointer"
+      (click)="changePeriod('PREV')"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="dropdown">
+      <button
+        class="btn btn-link dropdown-toggle text-muted"
+        type="button"
+        id="btnChangePeriod"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        style="text-decoration: none; text-transform: capitalize"
+      >
+        {{ currentPeriod }}
+      </button>
+    </div>
+    <div
+      class="btn btn-light"
+      style="cursor:pointer"
+      (click)="changePeriod('NEXT')"
+    >
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
   <div
     mdbBtn
     class="new-transaction btn btn-link"
     (click)="openModalNewTransaction()"
+    style="text-decoration: none"
   >
     <i class="fas fa-chevron-left"></i>
     Adicionar transação

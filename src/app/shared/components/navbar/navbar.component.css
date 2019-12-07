@@ -84,3 +84,19 @@
 .new-transaction {
   cursor: pointer;
 }
+
+.group-period {
+  text-transform: none;
+  float: none;
+  position: absolute;
+  left: 50%;
+  width: 194px;
+  margin-left: -97px;
+  color: #999;
+  text-align: center;
+  -webkit-transition: all linear 250ms;
+  -moz-transition: all linear 250ms;
+  -o-transition: all linear 250ms;
+  transition: all linear 250ms;
+  display: flex;
+}

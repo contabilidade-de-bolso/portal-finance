@@ -4,12 +4,17 @@ import { Observable, throwError } from "rxjs";
 import { map, catchError, debounceTime } from "rxjs/operators";
 import { Injectable, OnInit } from "@angular/core";
 import { SessionStorage } from "./session-storage.service";
+import { UtilService } from "../utils/util.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class HttpService {
-  constructor(private http: HttpClient, private localStorage: SessionStorage) {}
+  constructor(
+    private http: HttpClient,
+    private localStorage: SessionStorage,
+    private utilService: UtilService
+  ) {}
 
   public callMethod(
     url: string,
@@ -37,6 +42,15 @@ export class HttpService {
       params = {
         Authorization: `Bearer ${this.localStorage.getUserAuth().token}`
       };
+      var currentDate = this.localStorage.getPeriodCurrent();
+      currentDate = !currentDate ? 0 : currentDate.dt_transaction;
+      if (body) {
+        body["currentDate"] = this.utilService.formatDateSqlToNgb(currentDate);
+      } else {
+        body = {
+          currentDate: this.utilService.formatDateSqlToNgb(currentDate)
+        };
+      }
     }
 
     var headers = new HttpHeaders(params);
@@ -47,7 +61,7 @@ export class HttpService {
     );
     headers.append(
       "Access-Control-Allow-Headers",
-      "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+      "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, DateCurrent"
     );
 
     return new Promise<any>((resolve: any, reject: any) => {

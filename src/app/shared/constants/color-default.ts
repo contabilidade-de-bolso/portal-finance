@@ -45,7 +45,7 @@ export const colors = {
       "#556B2F",
       "#808000"
     ],
-    SAL: ["#FFCE67", "#ffc107"],
+    SAL: ["#FFCE67", "#FA8072"],
     DES: [
       "#B22222",
       "#FA8072",

@@ -71,6 +71,8 @@ export class LoginAuthComponent extends BaseResourceFormComponent<User> {
     let userAuth = {};
     userAuth = result.user;
     userAuth["token"] = result.token;
+
+    this.localStorage.setPeriodCurrent(result.firstTransaction);
     this.localStorage.setUser(userAuth);
     this.router.navigate(["/home"]);
   }

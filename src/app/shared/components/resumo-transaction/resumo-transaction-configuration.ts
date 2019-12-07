@@ -290,7 +290,17 @@ export class ResumoTransactionConfiguration {
           name: "gastos",
           data: []
         }
-      ]
+      ],
+      lang: {
+        noData: "Não há dados."
+      },
+      noData: {
+        style: {
+          fontWeight: "bold",
+          fontSize: "9px",
+          color: "#303030"
+        }
+      }
     };
   }
 }
