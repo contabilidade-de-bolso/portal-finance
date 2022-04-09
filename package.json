@@ -28,7 +28,7 @@
     "highcharts": "^7.2.1",
     "highcharts-angular": "^2.4.0",
     "jquery": "^3.4.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ngx-currency": "^2.0.0",
     "ngx-toastr": "^10.2.0",
     "rxjs": "^6.5.3",
